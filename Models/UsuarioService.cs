@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Biblioteca.Models
 {
-    public class UsusarioService
+    public class UsuarioService
     {
          public List<Usuario> Listar(){
             using(BibliotecaContext bc = new BibliotecaContext()){
