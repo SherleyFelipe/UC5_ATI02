@@ -1,6 +1,8 @@
 @model ICollection<Emprestimo>
 @{
     ViewData["Title"] = "Listagem de Empréstimos";
+
+    string Classe = "";
 }
 
 <div class="row">
@@ -22,10 +24,12 @@
 
 <div class="row">
     <div class="col-md-12">
-       
-        <table class="table table-striped" > 
-            <thead >
-                <tr><th>Id</th>
+        @if(Model.Count!=0){
+        }
+        <table class="table table-striped"> 
+            <thead>
+                <tr>
+                <th>Id</th>
                 <th>Usuario</th>
                 <th>Data Empréstimo</th>
                 <th>Data Devolução</th>
@@ -35,10 +39,18 @@
                 </tr>
             </thead>
             <tbody>
-                   @if(Model.Count > 0){
-                @foreach(Emprestimo e in Model)
+                @foreach (var e in Model)
                 {
-                <tr>
+                    @if((System.DateTime.Compare(System.DateTime.Now, e.DataDevolucao)>0))
+                    {
+                        Classe="text-danger";
+                    }
+                    else
+                    {
+                        Classe="";
+                    }
+
+                <tr Class="@Classe">
                     <td>@e.Id</td>
                     <td>@e.NomeUsuario</td>
                     <td>@e.DataEmprestimo.ToString("dd/MM/yyyy")</td>
@@ -48,12 +60,8 @@
                     <td><a href="/Emprestimo/Edicao/@e.Id">Editar</a></td>
                 </tr>
                 }
-                 } else{
-                    <p>Nenhum registro encontrado.</p>
-                }
             </tbody>
         </table>
-        
     </div>
 </div>
 

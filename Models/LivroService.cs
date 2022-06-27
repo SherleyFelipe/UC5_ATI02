@@ -23,7 +23,6 @@ namespace Biblioteca.Models
                 livro.Autor = l.Autor;
                 livro.Titulo = l.Titulo;
                 livro.Ano = l.Ano;
-
                 bc.SaveChanges();
             }
         }
